@@ -41,6 +41,7 @@ def Arguments(argv):
     parser.add_argument('--cleardb', action='store_true', required=False, help="clear Responder.db data")
     parser.add_argument('-v', '--version', action='version', version='%(prog)s 1.0.0')
     parser.add_argument('-b', '--backup', action='store_true', required=False, help="keep backup of Responder.conf, settings.py and Responder.db")
+    parser.add_argument('-r', '--restore', action='store_true', required=False, help="restore backup of Responder.conf, settings.py and Responder.db to original")
     parser.add_argument('-c', '--challenge', type=str, dest='NUMBER', required=False, help="set challenge to Repsonder conf")
     parser.add_argument('-m', '--machinename', type=str, dest='MACHINENAME', required=False, help="set machine name to settings.py")
     parser.add_argument('-d', '--domain', type=str, dest='DOMAIN', required=False, help="set domain name to settings.py")
@@ -121,7 +122,7 @@ def SearchFile(myOS, file):
             #Call function named SearchPath
             foundPath = SearchPath(defaultDir)
 
-            #If defaultDir not exists use "/"
+            #If defaultDir not exist use "/"
             if foundPath != True:
                 defaultDir = "/"
 
@@ -149,7 +150,7 @@ def SearchFile(myOS, file):
           exit(1)
 
     if foundFileFlag != True:
-        print("[!] " + file + " does not exists in the system...\n")
+        print("[!] " + file + " does not exist in the system...\n")
         exit(1)
 
     return foundFile
@@ -290,6 +291,18 @@ def KeepBackup(foundFile, statement):
     #Print success message
     print("[+] Backup for " + foundFile + " saved to: " + foundFileBackup + "\n")
 
+#RestoreBackup function
+def RestoreBackup(foundFile, foundFileBackup):
+
+    #Copy values to original file
+    copyfile(foundFileBackup, foundFile)
+    
+    #Delete .bak files
+    remove(foundFileBackup)
+
+    #Print success message
+    print("[+] Restore backup for " + foundFileBackup + " saved to: " + foundFile + "\n")
+
 #main function
 def main():
     #Call function named Arguments
@@ -311,11 +324,29 @@ def main():
 
     #If backup argument is enabled keep backup
     if arguments.backup:
+        
         #Call function named KeepBackup
         KeepBackup(foundFile, "Responder.conf")
 
         #Call function named KeepBackup
         KeepBackup(foundFileSettings, "Settings.py")
+
+    #If restore argument is enabled restore from backup
+    if arguments.restore:
+        #Call function named SearchFile
+        foundFileBackup = SearchFile(foundOS, "Responder.conf.bak")
+
+        #Call function named SearchFile
+        foundFileSettingsBackup = SearchFile(foundOS, "settings.py.bak")
+    
+        #Call function named RestoreBackup
+        RestoreBackup(foundFile, foundFileBackup)
+
+        #Call function named RestoreBackup
+        RestoreBackup(foundFileSettings, foundFileSettingsBackup)
+
+        #Print success message for clear .bak files
+        print("[+] All backup files have been removed from the system...\n")
 
     #Clear DB section
     if arguments.cleardb:
@@ -327,9 +358,10 @@ def main():
             #Call function named KeepBackup
             KeepBackup(foundFileDB, "Responder.db")
 
-        #delete Responder.db
+        #Delete Responder.db
         remove(foundFileDB)
 
+        #Print success message for clear db
         print("[+] " + foundFileDB + " has been deleted...\n")
     
     #Machine Name Section
