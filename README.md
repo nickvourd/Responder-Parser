@@ -57,7 +57,7 @@ options:
   -h, --help            show this help message and exit
   --cleardb             clear Responder.db data
   -v, --version         show program's version number and exit
-  -b, --backup          keep backup of Responder.conf and settings.py.
+  -b, --backup          keep backup of Responder.conf and settings.py
   -r, --restore         restore backup of Responder.conf and settings.py to original
   -c NUMBER, --challenge NUMBER
                         set challenge to Repsonder conf
