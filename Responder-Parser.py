@@ -13,7 +13,7 @@ from sys import exit, argv
 
 #Global variables
 __author__ = "@nickvourd"
-__version__ = "1.0.0"
+__version__ = "2.0.0"
 __license__ = "MIT"
 __github__ = "https://github.com/nickvourd/Responder-Parser"
 __ascii__ = '''
@@ -40,8 +40,8 @@ def Arguments(argv):
 
     parser.add_argument('--cleardb', action='store_true', required=False, help="clear Responder.db data")
     parser.add_argument('-v', '--version', action='version', version='%(prog)s 1.0.0')
-    parser.add_argument('-b', '--backup', action='store_true', required=False, help="keep backup of Responder.conf, settings.py and Responder.db")
-    parser.add_argument('-r', '--restore', action='store_true', required=False, help="restore backup of Responder.conf, settings.py and Responder.db to original")
+    parser.add_argument('-b', '--backup', action='store_true', required=False, help="keep backup of Responder.conf and settings.py")
+    parser.add_argument('-r', '--restore', action='store_true', required=False, help="restore backup of Responder.conf and settings.py to original")
     parser.add_argument('-c', '--challenge', type=str, dest='NUMBER', required=False, help="set challenge to Repsonder conf")
     parser.add_argument('-m', '--machinename', type=str, dest='MACHINENAME', required=False, help="set machine name to settings.py")
     parser.add_argument('-d', '--domain', type=str, dest='DOMAIN', required=False, help="set domain name to settings.py")
