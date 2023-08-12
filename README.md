@@ -133,7 +133,7 @@ sudo python Responder-Parser.py -c 1122334455667788 --cleardb -m WIN10-TEST.CORP
 
 ![Alt text](/Pictures/Responder-Parser-Example.png "Responder-Parser Example")
 
-### Overcome:
+### Overcome (On Responder):
 
 ![Alt text](/Pictures/Responder-Parser-Example-Results.png "Responder-Parser Example Results")
 
