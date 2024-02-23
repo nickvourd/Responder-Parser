@@ -18,7 +18,7 @@ Responder's python parsing tool.
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 
 ## Version
-### 2.0.0
+### 2.1.0
 
 ### Supporting Language
 
@@ -46,7 +46,7 @@ Responder's python parsing tool.
                  | |
                  |_|
 
-Responder-Parser v.2.0.0 - Responder's parsing tool.
+Responder-Parser v.2.1.0 - Responder's parsing tool.
 Responder-Parser is an open source tool licensed under MIT.
 Written with <3 by @nickvourd...
 Please visit https://github.com/nickvourd/Responder-Parser for more...
@@ -56,6 +56,7 @@ usage: Responder-Parser [options]
 options:
   -h, --help            show this help message and exit
   --cleardb             clear Responder.db data
+  --clearlogs           clear Responder's logs
   -v, --version         show program's version number and exit
   -b, --backup          keep backup of Responder.conf and settings.py
   -r, --restore         restore backup of Responder.conf and settings.py to original
