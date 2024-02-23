@@ -8,12 +8,12 @@
 import argparse
 from platform import system
 from os import walk, path, remove, getcwd
-from shutil import copyfile
+from shutil import copyfile, rmtree
 from sys import exit, argv
 
 #Global variables
 __author__ = "@nickvourd"
-__version__ = "2.0.0"
+__version__ = "2.1.0"
 __license__ = "MIT"
 __github__ = "https://github.com/nickvourd/Responder-Parser"
 __ascii__ = '''
@@ -39,7 +39,8 @@ def Arguments(argv):
     parser = argparse.ArgumentParser(formatter_class=argparse.RawDescriptionHelpFormatter, prog="Responder-Parser", usage='%(prog)s [options]')
 
     parser.add_argument('--cleardb', action='store_true', required=False, help="clear Responder.db data")
-    parser.add_argument('-v', '--version', action='version', version='%(prog)s 1.0.0')
+    parser.add_argument('--clearlogs', action='store_true', required=False, help="clear Responder's logs")
+    parser.add_argument('-v', '--version', action='version', version='%(prog)s 2.1.0')
     parser.add_argument('-b', '--backup', action='store_true', required=False, help="keep backup of Responder.conf and settings.py")
     parser.add_argument('-r', '--restore', action='store_true', required=False, help="restore backup of Responder.conf and settings.py to original")
     parser.add_argument('-c', '--challenge', type=str, dest='NUMBER', required=False, help="set challenge to Repsonder conf")
@@ -111,6 +112,50 @@ def SearchPath(directory):
     
     return foundPath
 
+#SearchFolder function
+def SearchFolder(myOS, folder):
+    foundFolderFlag = False
+    match myOS:
+        case "linux":
+            #Using default directory
+            defaultDir = "/usr/share/responder"
+
+            #Call function named SearchPath
+            foundPath = SearchPath(defaultDir)
+
+            #If defaultDir not exist use "/"
+            if foundPath != True:
+                defaultDir = "/"
+
+            #Search file in directories
+            for root, dirs, files in walk(defaultDir):
+                if folder in dirs:
+                    foundFolderFlag = True
+                    foundFolder = path.join(root, folder)
+                
+        case "windows":
+            #Exfiltrate local drive sumbol
+            currentDirectory = getcwd().split(":")
+            localDrive  = currentDirectory[0] + ":\\"
+
+            #Search file starting from local drive
+            for root, dirs, files in walk(localDrive):
+                if "Responder" in root:
+                    if folder in dirs:
+                        foundFolderFlag = True
+                        foundFolder = path.join(root, folder)
+                    #print(foundFolder)
+        case _:
+          foundFolder = "not supported"
+          print("[!] Not supported operating system...\n")
+          exit(1)
+
+    if foundFolderFlag != True:
+        print("[!] " + file + " does not exist in the system...\n")
+        exit(1)
+
+    return foundFolder
+
 #SearchFile function
 def SearchFile(myOS, file):
     foundFileFlag = False
@@ -138,7 +183,7 @@ def SearchFile(myOS, file):
             localDrive  = currentDirectory[0] + ":\\"
 
             #Search file starting from local drive
-            for root, dir, files in walk(localDrive):
+            for root, dirs, files in walk(localDrive):
                 if "Responder" in root:
                     if file in files:
                         foundFileFlag = True
@@ -364,6 +409,17 @@ def main():
         #Print success message for clear db
         print("[+] " + foundFileDB + " has been deleted...\n")
     
+    #Clear logs section
+    if arguments.clearlogs:
+        #Call function named SearchFolder
+        foundFolderLogs = SearchFolder(foundOS, "logs")
+        
+        #Delete logs folder
+        rmtree(foundFolderLogs, ignore_errors=False, onerror=None)
+
+        #Print success message for clear logs folder
+        print("[+] " + foundFolderLogs + " has been deleted...\n")
+
     #Machine Name Section
     if arguments.MACHINENAME:
         candidateValue = arguments.MACHINENAME
