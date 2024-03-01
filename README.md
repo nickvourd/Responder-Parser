@@ -9,6 +9,7 @@ Responder's python parsing tool.
  - Responder.conf
  - settings.py
  - Responder.db
+ - Responder's log folder
 
 ## Privileges
 
