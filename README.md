@@ -10,6 +10,7 @@ Responder's python parsing tool.
  - settings.py
  - Responder.db
  - Responder's log folder
+ - Responder.py
 
 ## Privileges
 
