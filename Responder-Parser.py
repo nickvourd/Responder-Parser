@@ -1,7 +1,7 @@
 ##############################################
 #      Responder-Parser.py                   #
 #      Author: Nikos Vourdas (@nickvourd)    #
-#      Co-Author: Prithvi Chintha	     #
+#      Co-Author: Prithvi Chintha	         #
 #      License: MIT                          #
 #      Required Dependencies: None           #
 ##############################################
@@ -33,7 +33,7 @@ Responder-Parser v.{} - Responder's parsing tool.
 Responder-Parser is an open source tool licensed under {}.
 Written with <3 by {}...
 Please visit {} for more...
-'''.format(__version__, __license__, __author__[0], __author__[1], __github__)
+'''.format(__version__, __license__, __authors__[0], __authors__[1], __github__)
 
 #Arguments function
 def Arguments(argv):
