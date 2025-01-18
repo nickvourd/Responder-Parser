@@ -23,7 +23,7 @@ Responder's python parsing tool.
 ### 3.0
 
 ## Version Name
-### Rolling Stone
+## Rolling Stone
 
 ## Supporting Language
 
