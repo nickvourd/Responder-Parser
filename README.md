@@ -27,12 +27,12 @@ Responder's python parsing tool.
 
 ## Supporting Language
 
-- ### python 3.x
+- #### python 3.x
 
 ## Supporting Systems
 
-- ### Windows
-- ### Linux
+- #### Windows
+- #### Linux
 
 ## Requirements
 
