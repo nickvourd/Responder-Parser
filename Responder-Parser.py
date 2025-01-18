@@ -1,6 +1,7 @@
 ##############################################
 #      Responder-Parser.py                   #
 #      Author: Nikos Vourdas (@nickvourd)    #
+#      Co-Author: Prithvi Chintha	     #
 #      License: MIT                          #
 #      Required Dependencies: None           #
 ##############################################
