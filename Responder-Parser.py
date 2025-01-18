@@ -41,47 +41,67 @@ def Arguments(argv):
     parser.add_argument('--cleardb', action='store_true', required=False, help="clear Responder.db data")
     parser.add_argument('--clearlogs', action='store_true', required=False, help="clear Responder's logs")
     parser.add_argument('-v', '--version', action='version', version='%(prog)s 2.1.0')
-    parser.add_argument('-b', '--backup', action='store_true', required=False, help="keep backup of Responder.conf and settings.py")
-    parser.add_argument('-r', '--restore', action='store_true', required=False, help="restore backup of Responder.conf and settings.py to original")
-    parser.add_argument('-c', '--challenge', type=str, dest='NUMBER', required=False, help="set challenge to Repsonder conf")
+    parser.add_argument('-b', '--backup', action='store_true', required=False, help="keep backup of Responder.conf, Responder.py and settings.py")
+    parser.add_argument('-r', '--restore', action='store_true', required=False, help="restore backup of Responder.conf, Responder.py and settings.py to original")
+    parser.add_argument('-c', '--challenge', type=str, dest='NUMBER', required=False, help="set challenge to Repsonder.conf")
     parser.add_argument('-m', '--machinename', type=str, dest='MACHINENAME', required=False, help="set machine name to settings.py")
     parser.add_argument('-d', '--domain', type=str, dest='DOMAIN', required=False, help="set domain name to settings.py")
     parser.add_argument('-u', '--username', type=str, dest='USERNAME', required=False, help="set username to settings.py")
     parser.add_argument('--dhcp', type=str, dest='HOSTNAME', required=False, help="set DHCP Hostname to settings.py")
     parser.add_argument('--rpcport', type=int, dest='PORT', required=False, help="set RPC port to settings.py")
-    parser.add_argument('--sql', type=str, dest='SQLSWITCH', required=False, help="set SQL server ON/OFF to Responder conf")
-    parser.add_argument('--smb', type=str, dest='SMBSWITCH', required=False, help="set SMB server ON/OFF to Responder conf")
-    parser.add_argument('--rdp', type=str, dest='RDPSWITCH', required=False, help="set RDP server ON/OFF to Responder conf")
-    parser.add_argument('--kerberos', type=str, dest='KERBEROSSWITCH', required=False, help="set Kerberos server ON/OFF to Responder conf")
-    parser.add_argument('--ftp', type=str, dest='FTPSWITCH', required=False, help="set FTP server ON/OFF to Responder conf")
-    parser.add_argument('--pop', type=str, dest='POPSWITCH', required=False, help="set POP server ON/OFF to Responder conf")
-    parser.add_argument('--smtp', type=str, dest='SMTPSWITCH', required=False, help="set SMTP server ON/OFF to Responder conf")
-    parser.add_argument('--imap', type=str, dest='IMAPSWITCH', required=False, help="set IMAP server ON/OFF to Responder conf")
-    parser.add_argument('--http', type=str, dest='HTTPSWITCH', required=False, help="set HTTP server ON/OFF to Responder conf")
-    parser.add_argument('--https', type=str, dest='HTTPSSWITCH', required=False, help="set HTTPS server ON/OFF to Responder conf")
-    parser.add_argument('--dns', type=str, dest='DNSSWITCH', required=False, help="set DNS server ON/OFF to Responder conf")
-    parser.add_argument('--ldap', type=str, dest='LDAPSWITCH', required=False, help="set LDAP server ON/OFF to Responder conf")
-    parser.add_argument('--dcerpc', type=str, dest='DCERPCSWITCH', required=False, help="set DCERPC server ON/OFF to Responder conf")
-    parser.add_argument('--winrm', type=str, dest='WINRMSWITCH', required=False, help="set WINRM server ON/OFF to Responder conf")
-    parser.add_argument('--setdb', type=str, dest='DATABASENAME', required=False, help="set Database file to Responder conf")
-    parser.add_argument('--sessionlog', type=str, dest='SESSIONLOG', required=False, help="set Session log file to Responder conf"),
-    parser.add_argument('--poisonlog', type=str, dest='POISONERSLOG', required=False, help="set Poisoners log file to Responder conf")
-    parser.add_argument('--analyzelog', type=str, dest='ANALYZELOG', required=False, help="set Analyze mode log file to Responder conf")
-    parser.add_argument('--configdumplog', type=str, dest='CONFIGDUMPLOG', required=False, help="set Confing Dump log file to Responder conf")
-    parser.add_argument('--autoignore', type=str, dest='AUTOIGNORE', required=False, help="set option AutoIgnoreAfterSuccess ON/OFF to Responder conf")
-    parser.add_argument('--capturemulticreds', type=str, dest='CAPTUREMULTICREDS', required=False, help="set option CaptureMultipleCredentials ON/OFF to Responder conf")
-    parser.add_argument('--capturemultihash', type=str, dest='CAPTUREMULTIHASH', required=False, help="set option CaptureMultipleHashFromSameHost ON/OFF to Responder conf")
-    parser.add_argument('--servealways', type=str, dest='SERVEALWAYS', required=False, help="set option Serve-Always for HTTP Server ON/OFF to Responder conf")
-    parser.add_argument('--serveexe', type=str, dest='SERVEEXE', required=False, help="set option Serve-Exe for HTTP Server ON/OFF to Responder conf")
-    parser.add_argument('--servehtml', type=str, dest='SERVEHTML', required=False, help="set option Serve-Html for HTTP Server ON/OFF to Responder conf")
-    parser.add_argument('--htmlfilename', type=str, dest='HTMLFILENAME', required=False, help="set HtmlFilename file for HTTP Server to Responder conf")
-    parser.add_argument('--exefilename', type=str, dest='EXEFILENAME', required=False, help="set ExeFilename file for HTTP Server to Responder conf")
-    parser.add_argument('--exedownloadname', type=str, dest='EXEDOWNLOADNAME', required=False, help="set ExeDownloadName file for HTTP Server to Responder conf")
+    parser.add_argument('--sql', type=str, dest='SQLSWITCH', required=False, help="set SQL server ON/OFF to Responder.conf")
+    parser.add_argument('--smb', type=str, dest='SMBSWITCH', required=False, help="set SMB server ON/OFF to Responder.conf")
+    parser.add_argument('--rdp', type=str, dest='RDPSWITCH', required=False, help="set RDP server ON/OFF to Responder.conf")
+    parser.add_argument('--kerberos', type=str, dest='KERBEROSSWITCH', required=False, help="set Kerberos server ON/OFF to Responder.conf")
+    parser.add_argument('--ftp', type=str, dest='FTPSWITCH', required=False, help="set FTP server ON/OFF to Responder.conf")
+    parser.add_argument('--pop', type=str, dest='POPSWITCH', required=False, help="set POP server ON/OFF to Responder.conf")
+    parser.add_argument('--smtp', type=str, dest='SMTPSWITCH', required=False, help="set SMTP server ON/OFF to Responder.conf")
+    parser.add_argument('--imap', type=str, dest='IMAPSWITCH', required=False, help="set IMAP server ON/OFF to Responder.conf")
+    parser.add_argument('--http', type=str, dest='HTTPSWITCH', required=False, help="set HTTP server ON/OFF to Responder.conf")
+    parser.add_argument('--https', type=str, dest='HTTPSSWITCH', required=False, help="set HTTPS server ON/OFF to Responder.conf")
+    parser.add_argument('--dns', type=str, dest='DNSSWITCH', required=False, help="set DNS server ON/OFF to Responder.conf")
+    parser.add_argument('--ldap', type=str, dest='LDAPSWITCH', required=False, help="set LDAP server ON/OFF to Responder.conf")
+    parser.add_argument('--dcerpc', type=str, dest='DCERPCSWITCH', required=False, help="set DCERPC server ON/OFF to Responder.conf")
+    parser.add_argument('--winrm', type=str, dest='WINRMSWITCH', required=False, help="set WINRM server ON/OFF to Responder.conf")
+    parser.add_argument('--mqtt', type=str, dest='MQTTSWITCH', required=False, help="set MQTT server ON/OFF to Responder.conf")
+    parser.add_argument('--snmp', type=str, dest='SNMPSWITCH', required=False, help="set SNMP server ON/OFF to Responder.conf")
+    parser.add_argument('--setdb', type=str, dest='DATABASENAME', required=False, help="set Database file to Responder.conf")
+    parser.add_argument('--sessionlog', type=str, dest='SESSIONLOG', required=False, help="set Session log file to Responder.conf"),
+    parser.add_argument('--poisonlog', type=str, dest='POISONERSLOG', required=False, help="set Poisoners log file to Responder.conf")
+    parser.add_argument('--analyzelog', type=str, dest='ANALYZELOG', required=False, help="set Analyze mode log file to Responder.conf")
+    parser.add_argument('--configdumplog', type=str, dest='CONFIGDUMPLOG', required=False, help="set Confing Dump log file to Responder.conf")
+    parser.add_argument('--autoignore', type=str, dest='AUTOIGNORE', required=False, help="set option AutoIgnoreAfterSuccess ON/OFF to Responder.conf")
+    parser.add_argument('--capturemulticreds', type=str, dest='CAPTUREMULTICREDS', required=False, help="set option CaptureMultipleCredentials ON/OFF to Responder.conf")
+    parser.add_argument('--capturemultihash', type=str, dest='CAPTUREMULTIHASH', required=False, help="set option CaptureMultipleHashFromSameHost ON/OFF to Responder.conf")
+    parser.add_argument('--servealways', type=str, dest='SERVEALWAYS', required=False, help="set option Serve-Always for HTTP Server ON/OFF to Responder.conf")
+    parser.add_argument('--serveexe', type=str, dest='SERVEEXE', required=False, help="set option Serve-Exe for HTTP Server ON/OFF to Responder.conf")
+    parser.add_argument('--servehtml', type=str, dest='SERVEHTML', required=False, help="set option Serve-Html for HTTP Server ON/OFF to Responder.conf")
+    parser.add_argument('--htmlfilename', type=str, dest='HTMLFILENAME', required=False, help="set HtmlFilename file for HTTP Server to Responder.conf")
+    parser.add_argument('--exefilename', type=str, dest='EXEFILENAME', required=False, help="set ExeFilename file for HTTP Server to Responder.conf")
+    parser.add_argument('--exedownloadname', type=str, dest='EXEDOWNLOADNAME', required=False, help="set ExeDownloadName file for HTTP Server to Responder.conf")
     #parser.add_argument('--wpadscript', type=str, dest='WPADSCRIPT', required=False, help="set WPADScript file for HTTP Server to Responder conf")
     #parser.add_argument('--htmltoinject', type=str, dest='HTMLTOINJECT', required=False, help="set HTMLToInject file for HTTP Server to Responder conf")
-    parser.add_argument('--sslcert', type=str, dest='SSLCERT', required=False, help="set SSL Certificate for HTTPS to Responder conf")
-    parser.add_argument('--sslkey', type=str, dest='SSLKEY', required=False, help="set SSL Key for HTTPS Server to Responder conf")
-
+    parser.add_argument('--sslcert', type=str, dest='SSLCERT', required=False, help="set SSL Certificate for HTTPS to Responder.conf")
+    parser.add_argument('--sslkey', type=str, dest='SSLKEY', required=False, help="set SSL Key for HTTPS Server to Responder.conf")
+    parser.add_argument('--http-port', type=str, dest='HTTPPORT', required=False, help="set HTTP port to Responder.py")
+    parser.add_argument('--https-port', type=str, dest='HTTPSPORT', required=False, help="set HTTPS port to Responder.py")
+    parser.add_argument('--ftp-port', type=str, dest='FTPPORT', required=False, help="set FTP port to Responder.py")
+    parser.add_argument('--winrm-port', type=str, dest='WINRMPORT', required=False, help="set WinRM port to Responder.py")
+    parser.add_argument('--rdp-port', type=str, dest='RDPPORT', required=False, help="set RDP port to Responder.py")
+    parser.add_argument('--mssql-port', type=str, dest='MSSQLPORT', required=False, help="set MSSQL port to Responder.py")
+    parser.add_argument('--pop3-port', type=str, dest='POP3PORT', required=False, help="set POP3 port to Responder.py")
+    parser.add_argument('--smtp-port', type=str, dest='SMTPPORT', required=False, help="set SMTP port to Responder.py")
+    parser.add_argument('--imap-port', type=str, dest='IMAPPORT', required=False, help="set IMAP port to Responder.py")
+    parser.add_argument('--ldap-port', type=str, dest='LDAPPORT', required=False, help="set LDAP port to Responder.py")
+    parser.add_argument('--ldaps-port', type=str, dest='LDAPSPORT', required=False, help="set LDAPS port to Responder.py")
+    parser.add_argument('--mqtt-port', type=str, dest='MQTTPORT', required=False, help="set MQTT port to Responder.py")
+    parser.add_argument('--dns-tcp-port', type=str, dest='DNSTCPPORT', required=False, help="set DNS TCP port to Responder.py")
+    parser.add_argument('--dns-udp-port', type=str, dest='DNSUDPPORT', required=False, help="set DNS UDP port to Responder.py")
+    parser.add_argument('--snmp-port', type=str, dest='SNMPPORT', required=False, help="set SNMP port to Responder.py")
+    parser.add_argument('--http-proxy-port', type=str, dest='HTTPPROXYPORT', required=False, help="set HTTP proxy port to Responder.py")
+    parser.add_argument('--auth-proxy-port', type=str, dest='AUTHPROXYPORT', required=False, help="set Auth proxy port to Responder.py")
+    parser.add_argument('--kerberos-tcp-port', type=str, dest='KERBEROSTCPPORT', required=False, help="set Kerberos TCP port to Responder.py")
+    parser.add_argument('--kerberos-udp-port', type=str, dest='KERBEROSUDPPORT', required=False, help="set Kerberos UDP port to Responder.py")
     args = parser.parse_args()
 
     #check the number of arguments
@@ -91,6 +111,15 @@ def Arguments(argv):
         exit(1)
 
     return args
+
+#ValidatePort Function
+def ValidatePort(Port_Value):
+    try:
+        value = int(Port_Value)
+    except ValueError:
+        # If conversion fails, print error and exit
+        print("[ERROR] " + Port_Value + " is not a valid port number")
+        exit(1)
 
 #FindOS function
 def FindOS(candidateOS):
@@ -151,7 +180,7 @@ def SearchFolder(myOS, folder):
           exit(1)
 
     if foundFolderFlag != True:
-        print("[!] " + file + " does not exist in the system...\n")
+        print("[!] " + "File" + " does not exist in the system...\n")
         exit(1)
 
     return foundFolder
@@ -208,6 +237,16 @@ def FindString(foundFile, searchingWord):
             print("[!] " + foundFile + " does not support this configuration\n")
             exit(1)
 
+#FindLineWithParts function
+def FindLineWithParts(foundFile, firstPart, thirdPart):
+    with open(foundFile, 'r') as file:
+        for line in file:
+            # Check if both parts are in the line
+            if firstPart in line and thirdPart in line:
+                return True
+    print("[!] " + foundFile + " does not support this configuration\n")
+    exit(1) 
+
 #ModifyFile function
 def ModifyFile(foundFile, searchingWord, candidateValue, statement):
     #Read file and find line
@@ -228,7 +267,7 @@ def ModifyFile(foundFile, searchingWord, candidateValue, statement):
 
         print("[+] " + statement + " has been set to " + "'" + candidateValue + "'" + " in " + foundFile + "...\n")
 
-#ModifyFile function
+#ModifyFileWithTab function
 def ModifyFileWithTab(foundFile, searchingWord, candidateValue, statement):
     #Read file and find line
         with open(foundFile, 'r') as file:
@@ -247,6 +286,28 @@ def ModifyFileWithTab(foundFile, searchingWord, candidateValue, statement):
             file.writelines(fileContents)
 
         print("[+] " + statement + " has been set to " + "'" + candidateValue + "'" + " in " + foundFile + "...\n")
+
+#ModifyFileResponder function
+def ModifyFileResponder(foundFile, check_one, check_two, candidateValue):
+    #Read file and find line
+        with open(foundFile, 'r') as file:
+            for index, line in enumerate(file):
+                if check_one in line and check_two in line:
+                    lineNumber = index + 1
+
+        #Read file and save tha value to specific line
+        with open(foundFile, 'r') as file:
+            fileContents = file.readlines()
+
+        # Modify the target line
+        original_line = fileContents[lineNumber - 1]
+        parts2 = original_line.split(',')
+        second_part2 = parts2[2].strip()
+        modified_line = original_line.replace(second_part2, str(candidateValue))
+        fileContents[lineNumber - 1] = modified_line        
+        
+        with open(foundFile, 'w') as file:
+            file.writelines(fileContents)
 
 #DetermineSwitch function
 def DetermineSwitch(statement, candidateValue):
@@ -295,6 +356,7 @@ def ConfigureStringWithTab(keyword):
     statement = splitKeyword[1]
 
     return searchingWord, statement
+
 
 #ConfigureValues function
 def ConfigureValues(foundFile, searchingWord, candidateValue, statement):
@@ -367,6 +429,9 @@ def main():
     #Call function named SearchFile
     foundFileSettings = SearchFile(foundOS, "settings.py")
 
+    # Added New Vaiable to find Responder.py
+    foundFileResponder = SearchFile(foundOS, "Responder.py")
+
     #If backup argument is enabled keep backup
     if arguments.backup:
         
@@ -375,6 +440,9 @@ def main():
 
         #Call function named KeepBackup
         KeepBackup(foundFileSettings, "Settings.py")
+        
+        #Call function named KeepBackup
+        KeepBackup(foundFileResponder, "Responder.py")
 
     #If restore argument is enabled restore from backup
     if arguments.restore:
@@ -383,12 +451,18 @@ def main():
 
         #Call function named SearchFile
         foundFileSettingsBackup = SearchFile(foundOS, "settings.py.bak")
-    
+        
+        #Call function named SearchFile
+        foundFileResponderBackup = SearchFile(foundOS, "Responder.py.bak")
+        
         #Call function named RestoreBackup
         RestoreBackup(foundFile, foundFileBackup)
 
         #Call function named RestoreBackup
         RestoreBackup(foundFileSettings, foundFileSettingsBackup)
+
+        #Call function named RestoreBackup
+        RestoreBackup(foundFileResponder, foundFileResponderBackup)
 
         #Print success message for clear .bak files
         print("[+] All backup files have been removed from the system...\n")
@@ -430,6 +504,291 @@ def main():
         #Call function ConfigureValues
         ConfigureValuesWithTab(foundFileSettings, configuredStringsWithTab[0], candidateValue, configuredStringsWithTab[1])
 
+    #HTTP Port Section
+    if arguments.HTTPPORT:
+        candidateValue = arguments.HTTPPORT
+        ValidatePort(candidateValue)
+        
+        line = "threads.append(Thread(target=serve_thread_tcp, args=(settings.Config.Bind_To, 80, HTTP,)))"
+        parts = line.split(',')
+        check_one = parts[0] + ',' + parts[1]  
+        check_two = parts[3].strip() + ',' + parts[4]  
+    	
+        FindLineWithParts(foundFileResponder, check_one, check_two)
+        ModifyFileResponder(foundFileResponder, check_one, check_two, candidateValue)
+	    
+        print("[+] " + parts[3].strip() + " server is running on port " + "'" + str(candidateValue) + "'" + " in " + foundFileResponder + "...\n")
+    	
+    #HTTPS Port Section
+    if arguments.HTTPSPORT:
+        candidateValue = arguments.HTTPSPORT
+        ValidatePort(candidateValue)
+    	
+        line = "threads.append(Thread(target=serve_thread_SSL, args=(settings.Config.Bind_To, 443, HTTP,)))"
+        parts = line.split(',')
+        check_one = parts[0] + ',' + parts[1]  
+        check_two = parts[3].strip() + ',' + parts[4]  
+    	
+        FindLineWithParts(foundFileResponder, check_one, check_two)
+        ModifyFileResponder(foundFileResponder, check_one, check_two, candidateValue)
+	    
+        print("[+] " + parts[3].strip() + "S server is running on port " + "'" + str(candidateValue) + "'" + " in " + foundFileResponder + "...\n")
+    
+    #FTP Port Section
+    if arguments.FTPPORT:
+        candidateValue = arguments.FTPPORT
+        ValidatePort(candidateValue)
+    	
+        line = "threads.append(Thread(target=serve_thread_tcp, args=(settings.Config.Bind_To, 21, FTP,)))"
+        parts = line.split(',')
+        check_one = parts[0] + ',' + parts[1]  
+        check_two = parts[3].strip() + ',' + parts[4]  
+    	
+        FindLineWithParts(foundFileResponder, check_one, check_two)
+        ModifyFileResponder(foundFileResponder, check_one, check_two, candidateValue)
+	    
+        print("[+] " + parts[3].strip() + " server is running on port " + "'" + str(candidateValue) + "'" + " in " + foundFileResponder + "...\n")
+    
+    #WinRM Port Section
+    if arguments.WINRMPORT:
+        candidateValue = arguments.WINRMPORT
+        ValidatePort(candidateValue)
+    	
+        line = "threads.append(Thread(target=serve_thread_tcp, args=(settings.Config.Bind_To, 5985, WinRM,)))"
+        parts = line.split(',')
+        check_one = parts[0] + ',' + parts[1]  
+        check_two = parts[3].strip() + ',' + parts[4]  
+    	
+        FindLineWithParts(foundFileResponder, check_one, check_two)
+        ModifyFileResponder(foundFileResponder, check_one, check_two, candidateValue)
+	    
+        print("[+] " + parts[3].strip() + " service is running on port " + "'" + str(candidateValue) + "'" + " in " + foundFileResponder + "...\n")
+    
+    #RDP Port Section
+    if arguments.RDPPORT:
+        candidateValue = arguments.RDPPORT
+        ValidatePort(candidateValue)
+    	
+        line = "threads.append(Thread(target=serve_thread_tcp, args=(settings.Config.Bind_To, 3389, RDP,)))"
+        parts = line.split(',')
+        check_one = parts[0] + ',' + parts[1]  
+        check_two = parts[3].strip() + ',' + parts[4]  
+    	
+        FindLineWithParts(foundFileResponder, check_one, check_two)
+        ModifyFileResponder(foundFileResponder, check_one, check_two, candidateValue)
+	    
+        print("[+] " + parts[3].strip() + " service is running on port " + "'" + str(candidateValue) + "'" + " in " + foundFileResponder + "...\n")
+    
+    #MSSQL Port Section
+    if arguments.MSSQLPORT:
+        candidateValue = arguments.MSSQLPORT
+        ValidatePort(candidateValue)
+    	
+        line = "threads.append(Thread(target=serve_thread_tcp, args=(settings.Config.Bind_To, 1433, MSSQL,)))"
+        parts = line.split(',')
+        check_one = parts[0] + ',' + parts[1]  
+        check_two = parts[3].strip() + ',' + parts[4]  
+    	
+        FindLineWithParts(foundFileResponder, check_one, check_two)
+        ModifyFileResponder(foundFileResponder, check_one, check_two, candidateValue)
+	    
+        print("[+] " + parts[3].strip() + " service is running on port " + "'" + str(candidateValue) + "'" + " in " + foundFileResponder + "...\n")
+    
+    #POP3 Port Section
+    if arguments.POP3PORT:
+        candidateValue = arguments.POP3PORT
+        ValidatePort(candidateValue)
+    	
+        line = "threads.append(Thread(target=serve_thread_tcp, args=(settings.Config.Bind_To, 110, POP3,)))"
+        parts = line.split(',')
+        check_one = parts[0] + ',' + parts[1]  
+        check_two = parts[3].strip() + ',' + parts[4]  
+    	
+        FindLineWithParts(foundFileResponder, check_one, check_two)
+        ModifyFileResponder(foundFileResponder, check_one, check_two, candidateValue)
+	    
+        print("[+] " + parts[3].strip() + " service is running on port " + "'" + str(candidateValue) + "'" + " in " + foundFileResponder + "...\n")
+        
+    #SMTP Port Section
+    if arguments.SMTPPORT:
+        candidateValue = arguments.SMTPPORT
+        ValidatePort(candidateValue)
+    	
+        line = "threads.append(Thread(target=serve_thread_tcp, args=(settings.Config.Bind_To, 25,  ESMTP,)))"
+        parts = line.split(',')
+        check_one = parts[0] + ',' + parts[1]  
+        check_two = parts[3].strip() + ',' + parts[4]  
+    	
+        FindLineWithParts(foundFileResponder, check_one, check_two)
+        ModifyFileResponder(foundFileResponder, check_one, check_two, candidateValue)
+	    
+        print("[+] " + parts[3].strip() + " service is running on port " + "'" + str(candidateValue) + "'" + " in " + foundFileResponder + "...\n")
+    
+    #IMAP Port Section
+    if arguments.IMAPPORT:
+        candidateValue = arguments.IMAPPORT
+        ValidatePort(candidateValue)
+    	
+        line = "threads.append(Thread(target=serve_thread_tcp, args=(settings.Config.Bind_To, 143, IMAP,)))"
+        parts = line.split(',')
+        check_one = parts[0] + ',' + parts[1]  
+        check_two = parts[3].strip() + ',' + parts[4]  
+    	
+        FindLineWithParts(foundFileResponder, check_one, check_two)
+        ModifyFileResponder(foundFileResponder, check_one, check_two, candidateValue)
+	    
+        print("[+] " + parts[3].strip() + " service is running on port " + "'" + str(candidateValue) + "'" + " in " + foundFileResponder + "...\n")    
+    
+    #LDAP Port Section
+    if arguments.LDAPPORT:
+        candidateValue = arguments.LDAPPORT
+        ValidatePort(candidateValue)
+    	
+        line = "threads.append(Thread(target=serve_thread_tcp, args=(settings.Config.Bind_To, 389, LDAP,)))"
+        parts = line.split(',')
+        check_one = parts[0] + ',' + parts[1]  
+        check_two = parts[3].strip() + ',' + parts[4]  
+    	
+        FindLineWithParts(foundFileResponder, check_one, check_two)
+        ModifyFileResponder(foundFileResponder, check_one, check_two, candidateValue)
+	    
+        print("[+] " + parts[3].strip() + " service is running on port " + "'" + str(candidateValue) + "'" + " in " + foundFileResponder + "...\n")
+        
+   #LDAPS Port Section
+    if arguments.LDAPSPORT:
+        candidateValue = arguments.LDAPSPORT
+        ValidatePort(candidateValue)
+    	
+        line = "threads.append(Thread(target=serve_thread_SSL, args=(settings.Config.Bind_To, 636, LDAP,)))"
+        parts = line.split(',')
+        check_one = parts[0] + ',' + parts[1]  
+        check_two = parts[3].strip() + ',' + parts[4]  
+    	
+        FindLineWithParts(foundFileResponder, check_one, check_two)
+        ModifyFileResponder(foundFileResponder, check_one, check_two, candidateValue)
+	    
+        print("[+] " + parts[3].strip() + "S service is running on port " + "'" + str(candidateValue) + "'" + " in " + foundFileResponder + "...\n")
+    
+    #MQTT Port Section
+    if arguments.MQTTPORT:
+        candidateValue = arguments.MQTTPORT
+        ValidatePort(candidateValue)
+    	
+        line = "threads.append(Thread(target=serve_thread_tcp, args=(settings.Config.Bind_To, 1883, MQTT,)))"
+        parts = line.split(',')
+        check_one = parts[0] + ',' + parts[1]  
+        check_two = parts[3].strip() + ',' + parts[4]  
+    	
+        FindLineWithParts(foundFileResponder, check_one, check_two)
+        ModifyFileResponder(foundFileResponder, check_one, check_two, candidateValue)
+	    
+        print("[+] " + parts[3].strip() + " service is running on port " + "'" + str(candidateValue) + "'" + " in " + foundFileResponder + "...\n")
+        
+    #DNS TCP Port Section
+    if arguments.DNSTCPPORT:
+        candidateValue = arguments.DNSTCPPORT
+        ValidatePort(candidateValue)
+    	
+        line = "threads.append(Thread(target=serve_thread_tcp, args=(settings.Config.Bind_To, 53, DNSTCP,)))"
+        parts = line.split(',')
+        check_one = parts[0] + ',' + parts[1]  
+        check_two = parts[3].strip() + ',' + parts[4]  
+    	
+        FindLineWithParts(foundFileResponder, check_one, check_two)
+        ModifyFileResponder(foundFileResponder, check_one, check_two, candidateValue)
+	    
+        print("[+] " + "DNS protocol is running on TCP port " + "'" + str(candidateValue) + "'" + " in " + foundFileResponder + "...\n")
+    
+    #DNS UDP Port Section
+    if arguments.DNSUDPPORT:
+        candidateValue = arguments.DNSUDPPORT
+        ValidatePort(candidateValue)
+    	
+        line = "threads.append(Thread(target=serve_thread_udp, args=('', 53, DNS,)))"
+        parts = line.split(',')
+        check_one = parts[0] + ',' + parts[1]  
+        check_two = parts[3].strip() + ',' + parts[4]  
+    	
+        FindLineWithParts(foundFileResponder, check_one, check_two)
+        ModifyFileResponder(foundFileResponder, check_one, check_two, candidateValue)
+	    
+        print("[+] " + "DNS protocol is running on UDP port " + "'" + str(candidateValue) + "'" + " in " + foundFileResponder + "...\n")
+    
+    #SNMP Port Section
+    if arguments.SNMPPORT:
+        candidateValue = arguments.SNMPPORT
+        ValidatePort(candidateValue)
+    	
+        line = "threads.append(Thread(target=serve_thread_udp, args=('', 161, SNMP,)))"
+        parts = line.split(',')
+        check_one = parts[0] + ',' + parts[1]  
+        check_two = parts[3].strip() + ',' + parts[4]  
+    	
+        FindLineWithParts(foundFileResponder, check_one, check_two)
+        ModifyFileResponder(foundFileResponder, check_one, check_two, candidateValue)
+	    
+        print("[+] " + parts[3].strip() + " service is running on UDP port " + "'" + str(candidateValue) + "'" + " in " + foundFileResponder + "...\n")
+        
+    #HTTP proxy Port Section
+    if arguments.HTTPPROXYPORT:
+        candidateValue = arguments.HTTPPROXYPORT
+        ValidatePort(candidateValue)
+    	
+        line = "threads.append(Thread(target=serve_thread_tcp, args=(settings.Config.Bind_To, 3128, HTTP_Proxy,)))"
+        parts = line.split(',')
+        check_one = parts[0] + ',' + parts[1]  
+        check_two = parts[3].strip() + ',' + parts[4]  
+    	
+        FindLineWithParts(foundFileResponder, check_one, check_two)
+        ModifyFileResponder(foundFileResponder, check_one, check_two, candidateValue)
+	    
+        print("[+] " + parts[3].strip() + " service is running on port " + "'" + str(candidateValue) + "'" + " in " + foundFileResponder + "...\n")
+        
+    #Auth proxy Port Section
+    if arguments.AUTHPROXYPORT:
+        candidateValue = arguments.AUTHPROXYPORT
+        ValidatePort(candidateValue)
+    	
+        line = "threads.append(Thread(target=serve_thread_tcp_auth, args=(settings.Config.Bind_To, 3128, Proxy_Auth,)))"
+        parts = line.split(',')
+        check_one = parts[0] + ',' + parts[1]  
+        check_two = parts[3].strip() + ',' + parts[4]  
+    	
+        FindLineWithParts(foundFileResponder, check_one, check_two)
+        ModifyFileResponder(foundFileResponder, check_one, check_two, candidateValue)
+	    
+        print("[+] " + parts[3].strip() + " service is running on port " + "'" + str(candidateValue) + "'" + " in " + foundFileResponder + "...\n")
+        
+    #Kerberos TCP Port Section
+    if arguments.KERBEROSTCPPORT:
+        candidateValue = arguments.KERBEROSTCPPORT
+        ValidatePort(candidateValue)
+    	
+        line = "threads.append(Thread(target=serve_thread_tcp, args=(settings.Config.Bind_To, 88, KerbTCP,)))"
+        parts = line.split(',')
+        check_one = parts[0] + ',' + parts[1]  
+        check_two = parts[3].strip() + ',' + parts[4]  
+    	
+        FindLineWithParts(foundFileResponder, check_one, check_two)
+        ModifyFileResponder(foundFileResponder, check_one, check_two, candidateValue)
+	    
+        print("[+] " + "Kerberos service is running on TCP port " + "'" + str(candidateValue) + "'" + " in " + foundFileResponder + "...\n")    
+        
+    #Kerberos UDP Port Section
+    if arguments.KERBEROSUDPPORT:
+        candidateValue = arguments.KERBEROSUDPPORT
+        ValidatePort(candidateValue)
+    	
+        line = "threads.append(Thread(target=serve_thread_udp, args=('', 88, KerbUDP,)))"
+        parts = line.split(',')
+        check_one = parts[0] + ',' + parts[1]  
+        check_two = parts[3].strip() + ',' + parts[4]  
+    	
+        FindLineWithParts(foundFileResponder, check_one, check_two)
+        ModifyFileResponder(foundFileResponder, check_one, check_two, candidateValue)
+	    
+        print("[+] " + "Kerberos service is running on UDP port " + "'" + str(candidateValue) + "'" + " in " + foundFileResponder + "...\n") 
+    
     #Domain Name Section
     if arguments.DOMAIN:
         candidateValue = arguments.DOMAIN
@@ -762,7 +1121,27 @@ def main():
         configuredStrings = ConfigureString("HTTPS", 1)
 
         #Call function named ConfigureOnOff
-        ConfigureOnOff(foundFile, configuredStrings[0], candidateServer, configuredStrings[1])   
+        ConfigureOnOff(foundFile, configuredStrings[0], candidateServer, configuredStrings[1])
+        
+    #MQTT Server section
+    if arguments.MQTTSWITCH:
+        candidateServer = arguments.MQTTSWITCH
+
+        #Call function named ConfigureString
+        configuredStrings = ConfigureString("MQTT", 1)
+
+        #Call function named ConfigureOnOff
+        ConfigureOnOff(foundFile, configuredStrings[0], candidateServer, configuredStrings[1]) 
+        
+    #SNMP Server section
+    if arguments.SNMPSWITCH:
+        candidateServer = arguments.SNMPSWITCH
+
+        #Call function named ConfigureString
+        configuredStrings = ConfigureString("SNMP", 1)
+
+        #Call function named ConfigureOnOff
+        ConfigureOnOff(foundFile, configuredStrings[0], candidateServer, configuredStrings[1])           
     
     #DNS Server section
     if arguments.DNSSWITCH:
