@@ -25,16 +25,16 @@ Responder's python parsing tool.
 ## Version Name
 ### Rolling Stone
 
-### Supporting Language
+## Supporting Language
 
-- ##### python 3.x
+- ### python 3.x
 
-### Supporting Systems
+## Supporting Systems
 
-- ##### Windows
-- ##### Linux
+- ### Windows
+- ### Linux
 
-### Requirements
+## Requirements
 
 > :information_desk_person: **Required Dependencies: None**
 <br />
