@@ -12,8 +12,8 @@ from shutil import copyfile, rmtree
 from sys import exit, argv
 
 #Global variables
-__author__ = "@nickvourd"
-__version__ = "2.1.0"
+__authors__ = ["@nickvourd", "Prithvi Chintha"]
+__version__ = "3.0"
 __license__ = "MIT"
 __github__ = "https://github.com/nickvourd/Responder-Parser"
 __ascii__ = '''
@@ -32,7 +32,7 @@ Responder-Parser v.{} - Responder's parsing tool.
 Responder-Parser is an open source tool licensed under {}.
 Written with <3 by {}...
 Please visit {} for more...
-'''.format(__version__, __license__, __author__, __github__)
+'''.format(__version__, __license__, __author__[0], __author__[1], __github__)
 
 #Arguments function
 def Arguments(argv):
@@ -40,7 +40,7 @@ def Arguments(argv):
 
     parser.add_argument('--cleardb', action='store_true', required=False, help="clear Responder.db data")
     parser.add_argument('--clearlogs', action='store_true', required=False, help="clear Responder's logs")
-    parser.add_argument('-v', '--version', action='version', version='%(prog)s 2.1.0')
+    parser.add_argument('-v', '--version', action='version', version='%(prog)s 3.0, Version Name: Rolling Stone')
     parser.add_argument('-b', '--backup', action='store_true', required=False, help="keep backup of Responder.conf, Responder.py and settings.py")
     parser.add_argument('-r', '--restore', action='store_true', required=False, help="restore backup of Responder.conf, Responder.py and settings.py to original")
     parser.add_argument('-c', '--challenge', type=str, dest='NUMBER', required=False, help="set challenge to Repsonder.conf")
